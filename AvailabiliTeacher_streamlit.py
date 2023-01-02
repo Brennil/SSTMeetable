@@ -128,7 +128,7 @@ for teach in meeting:
 st.write()
 '''
 ### Results
-#### ODD WEEK
+#### Odd Week
 '''
 
 st.write()
@@ -149,7 +149,7 @@ for teach in meeting:
                     all_avail[key].remove(val)
 
 '''
-#### EVEN WEEK
+#### Even Week
 '''
 
 st.write()
