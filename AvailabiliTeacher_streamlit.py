@@ -128,8 +128,9 @@ for teach in meeting:
 st.write()
 '''
 ### Results
+#### ODD WEEK
 '''
-st.write("<<<<<ODD WEEK>>>>>")
+
 st.write()
 time_converter(all_avail)
 
@@ -147,11 +148,14 @@ for teach in meeting:
                 if val not in x[key]:
                     all_avail[key].remove(val)
 
-st.write("<<<<<EVEN WEEK>>>>>")
+'''
+#### EVEN WEEK
+'''
+
 st.write()
 time_converter(all_avail)
 st.write()
 
 '''
-Thank you for using AvailabiliTeacher, Ver 2.0! :smile:
+### Thank you for using AvailabiliTeacher, Ver 2.0! :smile:
 '''
