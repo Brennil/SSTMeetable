@@ -6,7 +6,7 @@ import streamlit as st
 
 """
 # AvailabiliTeacher
-## Ver 2.0, dated 2 Jan 2023
+(Ver 2.0, dated 2 Jan 2023)
 
 A simple app to identify the common available periods across two or more teachers.
 
@@ -125,8 +125,8 @@ for teach in meeting:
                 if val not in x[key]:
                     all_avail[key].remove(val)    
 
+st.write()
 '''
-
 ### Results
 '''
 st.write("<<<<<ODD WEEK>>>>>")
@@ -150,8 +150,8 @@ for teach in meeting:
 st.write("<<<<<EVEN WEEK>>>>>")
 st.write()
 time_converter(all_avail)
+st.write()
 
 '''
-
 Thank you for using AvailabiliTeacher, Ver 2.0! :smile:
 '''
