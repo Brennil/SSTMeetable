@@ -90,10 +90,10 @@ def time_converter(all_avail):
             i += 1
             if i >= len(current)-1:
                 all_avail_times[key] = current
-                print("<<<", key, ">>>")
+                st.write("<<<", key, ">>>")
                 for time in current:
-                    print("{} - {}".format(time[0],time[1]))
-                print()
+                    st.write("{} - {}".format(time[0],time[1]))
+                st.write()
                 break
 
 with open('TeacherList.txt','r') as f:
@@ -104,8 +104,9 @@ meeting = []
 open_db('2023T1ODD.csv')
 
 all_avail = dict()
-meeting = st.multiselect("Please select the teachers' names:", teachers_list)
+meeting = st.multiselect("Please select the teachers' names, or start typing their name and press 'Enter' to select:", teachers_list)
 st.write("You selected:", meeting)
+
 for teach in meeting:
     x = availableper(teach)
     for key in x.keys():
@@ -117,31 +118,32 @@ for teach in meeting:
                 if val not in x[key]:
                     all_avail[key].remove(val)    
 
-'''
-while True:
-    teach = input("Please input the teacher's name; 0 to quit: ")
-    if teach == "0":
-        break
-    if teach not in teachers_list:
-        print("Invalid input, please try again.")
-        continue
-    else:
-        meeting.append(teach)
 
-    x = availableper(teach)
-    for key in x.keys():
-        if key not in all_avail.keys():
-            all_avail[key] = x[key]
-        else:
-            vals = all_avail[key].copy()
-            for val in vals:
-                if val not in x[key]:
-                    all_avail[key].remove(val)
-'''
+##while True:
+##    teach = input("Please input the teacher's name; 0 to quit: ")
+##    if teach == "0":
+##        break
+##    if teach not in teachers_list:
+##        print("Invalid input, please try again.")
+##        continue
+##    else:
+##        meeting.append(teach)
+##
+##    x = availableper(teach)
+##    for key in x.keys():
+##        if key not in all_avail.keys():
+##            all_avail[key] = x[key]
+##        else:
+##            vals = all_avail[key].copy()
+##            for val in vals:
+##                if val not in x[key]:
+##                    all_avail[key].remove(val)
 
-print()
-print("<<<<<ODD WEEK>>>>>")
-print()
+
+st.write()
+st.write("RESULTS")
+st.write("<<<<<ODD WEEK>>>>>")
+st.write()
 time_converter(all_avail)
 
 open_db('2023T1EVEN.csv')
@@ -158,8 +160,8 @@ for teach in meeting:
                 if val not in x[key]:
                     all_avail[key].remove(val)
 
-print("<<<<<EVEN WEEK>>>>>")
-print()
+st.write("<<<<<EVEN WEEK>>>>>")
+st.write()
 time_converter(all_avail)
 
 
