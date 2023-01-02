@@ -6,10 +6,11 @@ import streamlit as st
 
 """
 # AvailabiliTeacher
+## Ver 2.0, dated 2 Jan 2023
 
 A simple app to identify the common available periods across two or more teachers.
 
-:heart:
+Made with :heart: by Jovita Tang, Jan 2023
 
 """
 
@@ -103,6 +104,12 @@ meeting = []
 
 open_db('2023T1ODD.csv')
 
+'''
+### Enter Teachers' Names
+
+This is where you select the teachers whom you need to find a common timeslot with. Don't forget to select yourself too!
+'''
+
 all_avail = dict()
 meeting = st.multiselect("Please select the teachers' names, or start typing their name and press 'Enter' to select:", teachers_list)
 st.write("You selected:", meeting)
@@ -118,30 +125,10 @@ for teach in meeting:
                 if val not in x[key]:
                     all_avail[key].remove(val)    
 
+'''
 
-##while True:
-##    teach = input("Please input the teacher's name; 0 to quit: ")
-##    if teach == "0":
-##        break
-##    if teach not in teachers_list:
-##        print("Invalid input, please try again.")
-##        continue
-##    else:
-##        meeting.append(teach)
-##
-##    x = availableper(teach)
-##    for key in x.keys():
-##        if key not in all_avail.keys():
-##            all_avail[key] = x[key]
-##        else:
-##            vals = all_avail[key].copy()
-##            for val in vals:
-##                if val not in x[key]:
-##                    all_avail[key].remove(val)
-
-
-st.write()
-st.write("RESULTS")
+### Results
+'''
 st.write("<<<<<ODD WEEK>>>>>")
 st.write()
 time_converter(all_avail)
@@ -164,24 +151,7 @@ st.write("<<<<<EVEN WEEK>>>>>")
 st.write()
 time_converter(all_avail)
 
+'''
 
-##with st.echo(code_location='below'):
-##    total_points = st.slider("Number of points in spiral", 1, 5000, 2000)
-##    num_turns = st.slider("Number of turns in spiral", 1, 100, 9)
-##
-##    Point = namedtuple('Point', 'x y')
-##    data = []
-##
-##    points_per_turn = total_points / num_turns
-##
-##    for curr_point_num in range(total_points):
-##        curr_turn, i = divmod(curr_point_num, points_per_turn)
-##        angle = (curr_turn + 1) * 2 * math.pi * i / points_per_turn
-##        radius = curr_point_num / total_points
-##        x = radius * math.cos(angle)
-##        y = radius * math.sin(angle)
-##        data.append(Point(x, y))
-##
-##    st.altair_chart(alt.Chart(pd.DataFrame(data), height=500, width=500)
-##        .mark_circle(color='#0068c9', opacity=0.5)
-##        .encode(x='x:Q', y='y:Q'))
+Thank you for using AvailabiliTeacher, Ver 2.0! :smile:
+'''
