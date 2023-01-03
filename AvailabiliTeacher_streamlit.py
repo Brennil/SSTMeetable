@@ -1,14 +1,12 @@
-from collections import namedtuple
-import altair as alt
-import math
-import pandas as pd
 import streamlit as st
 
 """
 # AvailabiliTeacher
 (Ver 2.0, dated 2 Jan 2023)
 
-A simple app to identify the common available periods across two or more teachers.
+A simple app to identify the common available periods across two or more teachers, based on their timetable.
+
+Disclaimer: The identified common periods does not take into account ad hoc meetings that the teacher may have. After identifying possible meeting times, please double-check with your team.
 
 Made with :heart: by Jovita Tang, Jan 2023
 
