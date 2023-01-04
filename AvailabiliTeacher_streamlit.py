@@ -111,7 +111,10 @@ open_db('2023T1ODD.csv')
 '''
 ### Enter Teachers' Names
 
-This is where you select the teachers whom you need to find a common timeslot with. Select the teachers' names using the dropdown list, or start typing their name and press 'Enter'. Don't forget to select yourself too!
+This is where you select the teachers whom you need to find a common timeslot with. Use the dropdown list, or start typing their name in the box and press 'Enter'. 
+
+Don't forget to select yourself too!
+
 '''
 
 all_avail = dict()
