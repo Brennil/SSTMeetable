@@ -95,7 +95,7 @@ def time_converter(all_avail):
             if i >= len(current)-1:
                 all_avail_times[key] = current
                 with cols[count]:
-                    st.write("<<<", key, ">>>")
+                    st.write("**"+key+"**")
                     for time in current:
                         st.write("{} - {}".format(time[0],time[1]))
                 count += 1
