@@ -15,6 +15,8 @@ st.markdown("* :blue[Public and school holidays are also not taken into consider
 """
 Made with :heart: by Jovita Tang, Jan 2023
 
+---
+
 """
 
 import csv
