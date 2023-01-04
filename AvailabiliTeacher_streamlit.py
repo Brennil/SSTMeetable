@@ -46,6 +46,9 @@ def availableper(teacher):
     return teachfree
 
 def time_converter(all_avail):
+    col1, col2, col3, col4, col5 = st.columns(5)
+    cols = [col1,col2,col3,col4,col5]
+    count = 0
     all_avail_times = {}
     for key in all_avail.keys():
         timings = {
@@ -92,10 +95,10 @@ def time_converter(all_avail):
             i += 1
             if i >= len(current)-1:
                 all_avail_times[key] = current
-                st.write("<<<", key, ">>>")
+                cols[count].write("<<<", key, ">>>")
                 for time in current:
-                    st.write("{} - {}".format(time[0],time[1]))
-                st.write()
+                    cols[count].write("{} - {}".format(time[0],time[1]))
+                count += 1
                 break
 
 with open('TeacherList.txt','r') as f:
