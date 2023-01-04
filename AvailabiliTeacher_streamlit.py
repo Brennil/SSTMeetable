@@ -130,7 +130,7 @@ def time_converter(all_avail):
     ]
 
     # table
-    df2=df.style.set_properties(**{'text-align': 'center'}).set_table_styles(styles)
+    df2=df.style.set_properties().set_table_styles(styles)
     
     # CSS to inject contained in a string
     hide_table_row_index = """
