@@ -1,7 +1,7 @@
 import streamlit as st
 
 """
-# AvailabiliTeacher
+# SST AvailabiliTeacher
 (Ver 2.1, dated 4 Jan 2023)
 
 A simple app to identify the common available periods across two or more teachers, based on their timetable. This may be useful to identify viable timings for meetings that are not reflected in the timetable, such as committee meetings.
