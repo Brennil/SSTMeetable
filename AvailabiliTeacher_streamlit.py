@@ -1,4 +1,7 @@
 import streamlit as st
+import pandas as pd
+import csv
+from collections import defaultdict
 
 """
 # SST AvailabiliTeacher
@@ -18,9 +21,6 @@ Made with :heart: by Jovita Tang, Jan 2023
 ---
 
 """
-
-import csv
-from collections import defaultdict
     
 db = dict()
 
@@ -50,8 +50,8 @@ def availableper(teacher):
     return teachfree
 
 def time_converter(all_avail):
-    cols = st.columns(5)
-    count = 0
+    cols = []
+    headers = []
     all_avail_times = {}
     for key in all_avail.keys():
         timings = {
@@ -98,12 +98,28 @@ def time_converter(all_avail):
             i += 1
             if i >= len(current)-1:
                 all_avail_times[key] = current
-                with cols[count]:
-                    st.write("**"+key+"**")
-                    for time in current:
-                        st.write("{} - {}".format(time[0],time[1]))
-                count += 1
+                col = ""
+                headers.append(key)
+                for time in current:
+                    col += "{} - {}\n".format(time[0],time[1])
+                cols.append(col)
                 break
+    cols = [cols]
+    df = pd.DataFrame(cols, columns = headers)
+    # CSS to inject contained in a string
+    hide_table_row_index = """
+            <style>
+            thead tr th:first-child {display:none}
+            tbody th {display:none}
+            </style>
+            """
+    
+    # Inject CSS with Markdown
+    st.markdown(hide_table_row_index, unsafe_allow_html=True)
+    
+    # Display a static table
+    st.table(df)
+    
 
 with open('TeacherList.txt','r') as f:
     teachers_list = [line.rstrip() for line in f]
