@@ -178,7 +178,7 @@ for teach in meeting:
                 if val not in x[key]:
                     all_avail[key].remove(val)    
 
-st.write()
+st.write("\n")
 '''
 ### Results
 '''
@@ -188,7 +188,6 @@ if meeting == []:
 else:
     st.write("***Odd Week***")
     time_converter(all_avail)
-    st.write("\n")
 
     open_db('2023T1EVEN.csv')
 
