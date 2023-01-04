@@ -101,7 +101,8 @@ def time_converter(all_avail):
                 col = ""
                 headers.append(key)
                 for time in current:
-                    col += "{} - {} \n".format(time[0],time[1])
+                    col += "{} - {}".format(time[0],time[1])
+                    col += "\n"
                 cols.append(col)
                 break
     cols = [cols]
