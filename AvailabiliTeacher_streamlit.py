@@ -9,8 +9,8 @@ A simple app to identify the common available periods across two or more teacher
 This app is currently available for: **Term 1 2023**
 """
 st.markdown(":blue[**Disclaimer:**]") 
-st.markdown("*:blue[The identified common periods do not take into account ad hoc meetings or other commitments that teachers may have. After identifying possible meeting times, it is advisable to double-check with the teachers involved to confirm their availability.]")
-st.markdown("*:blue[Public and school holidays are also not taken into consideration when identifying common periods. You may wish to cross-check with a calendar to ensure your proposed meeting does not fall on a holiday.]")
+st.markdown("* :blue[The identified common periods do not take into account ad hoc meetings or other commitments that teachers may have. After identifying possible meeting times, it is advisable to double-check with the teachers involved to confirm their availability.]")
+st.markdown("* :blue[Public and school holidays are also not taken into consideration when identifying common periods. You may wish to cross-check with a calendar to ensure your proposed meeting does not fall on a holiday.]")
 
 """
 Made with :heart: by Jovita Tang, Jan 2023
