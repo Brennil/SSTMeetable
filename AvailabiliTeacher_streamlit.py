@@ -6,6 +6,7 @@ import streamlit as st
 
 A simple app to identify the common available periods across two or more teachers, based on their timetable. This may be useful to identify viable timings for meetings that are not reflected in the timetable, such as committee meetings.
 
+This app is currently available for: **Term 1 2023**
 """
 st.markdown(":blue[**Disclaimer:** The identified common periods do not take into account ad hoc meetings or other commitments that teachers may have. After identifying possible meeting times, it is advisable to double-check with the teachers involved to confirm their availability.]")
 
@@ -156,5 +157,5 @@ else:
     st.write("\n")
 
 '''
-### Thank you for using AvailabiliTeacher, Ver 2.0! :smile:
+### Thank you for using AvailabiliTeacher! :smile:
 '''
