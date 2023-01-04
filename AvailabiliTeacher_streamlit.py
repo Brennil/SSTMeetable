@@ -137,7 +137,7 @@ st.write()
 if meeting == []:
     st.write("Select some teachers to see the common available timeslots!")
 else:
-    st.write("**Odd Week**")
+    st.write("***Odd Week***")
     time_converter(all_avail)
     st.write("\n")
 
@@ -156,7 +156,7 @@ else:
                         all_avail[key].remove(val)
 
     st.write("\n\n\n")
-    st.write("**Even Week**")
+    st.write("***Even Week***")
     time_converter(all_avail)
     st.write("\n")
 
