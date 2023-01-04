@@ -132,8 +132,8 @@ if meeting == []:
     st.write("Select some teachers to see the common available timeslots!")
 else:
     st.write("**Odd Week**")
-    st.write("\n")
     time_converter(all_avail)
+    st.write("\n")
 
     open_db('2023T1EVEN.csv')
 
@@ -150,7 +150,6 @@ else:
                         all_avail[key].remove(val)
 
     st.write("**Even Week**")
-    st.write("\n")
     time_converter(all_avail)
     st.write("\n")
 
