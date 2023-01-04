@@ -98,15 +98,18 @@ def time_converter(all_avail):
             i += 1
             if i >= len(current)-1:
                 all_avail_times[key] = current
-                col = ""
+                col = []
                 headers.append(key)
                 for time in current:
-                    col += "{} - {}".format(time[0],time[1])
-                    col += "\n"
+                    col.append("{} - {}".format(time[0],time[1]))
                 cols.append(col)
                 break
-    cols = [cols]
-    df = pd.DataFrame(cols, columns = headers)
+    longest = max([len(x) for x in cols])
+    for col in cols:
+        if len(col) < longest:
+            col.append("")
+        
+    df = pd.DataFrame(zip(*cols), columns = headers)
     # CSS to inject contained in a string
     hide_table_row_index = """
             <style>
