@@ -111,12 +111,12 @@ open_db('2023T1ODD.csv')
 '''
 ### Enter Teachers' Names
 
-This is where you select the teachers whom you need to find a common timeslot with. Don't forget to select yourself too!
+This is where you select the teachers whom you need to find a common timeslot with. Select the teachers' names using the dropdown list, or start typing their name and press 'Enter'. Don't forget to select yourself too!
 '''
 
 all_avail = dict()
-meeting = st.multiselect("Please select the teachers' names, or start typing their name and press 'Enter' to select:", teachers_list)
-st.write("You selected:", meeting)
+meeting = st.multiselect("", teachers_list)
+st.write("Number of teachers selected:", len(meeting))
 
 for teach in meeting:
     x = availableper(teach)
@@ -161,5 +161,5 @@ else:
     st.write("\n\n\n")
 
 '''
-*Thank you for using AvailabiliTeacher!* :smile:
+***Thank you for using AvailabiliTeacher!*** :smile:
 '''
