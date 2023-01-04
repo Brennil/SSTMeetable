@@ -110,6 +110,28 @@ def time_converter(all_avail):
             col.append("")
         
     df = pd.DataFrame(zip(*cols), columns = headers)
+    
+    # style
+    th_props = [
+    ('font-size', '14px'),
+    ('text-align', 'center'),
+    ('font-weight', 'bold'),
+    ('color', '#6d6d6d'),
+    ('background-color', '#f7ffff')
+    ]
+                               
+    td_props = [
+    ('font-size', '12px')
+    ]
+                                 
+    styles = [
+    dict(selector="th", props=th_props),
+    dict(selector="td", props=td_props)
+    ]
+
+    # table
+    df2=df.style.set_properties(**{'text-align': 'left'}).set_table_styles(styles)
+    
     # CSS to inject contained in a string
     hide_table_row_index = """
             <style>
@@ -122,7 +144,7 @@ def time_converter(all_avail):
     st.markdown(hide_table_row_index, unsafe_allow_html=True)
     
     # Display a static table
-    st.table(df)
+    st.table(df2)
     
 
 with open('TeacherList.txt','r') as f:
