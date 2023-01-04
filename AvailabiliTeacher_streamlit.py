@@ -158,8 +158,8 @@ else:
     st.write("\n\n\n")
     st.write("***Even Week***")
     time_converter(all_avail)
-    st.write("\n")
+    st.write("\n\n\n")
 
 '''
-### Thank you for using AvailabiliTeacher! :smile:
+*Thank you for using AvailabiliTeacher!* :smile:
 '''
