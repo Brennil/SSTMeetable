@@ -204,10 +204,10 @@ else:
                     if val not in x[key]:
                         all_avail[key].remove(val)
 
-    st.write("\n\n\n")
+    st.write("\n\n")
     st.write("***Even Week***")
     time_converter(all_avail)
-    st.write("\n\n\n")
+    st.write("\n\n")
 
 '''
 ***Thank you for using AvailabiliTeacher!*** :smile:
