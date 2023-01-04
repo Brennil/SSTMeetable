@@ -108,7 +108,7 @@ def time_converter(all_avail):
     longest = max([len(x) for x in cols])
     st.write(longest)
     for col in cols:
-        if len(col) < longest:
+        while len(col) < longest:
             col.append("")
         
     df = pd.DataFrame(zip(*cols), columns = headers)
