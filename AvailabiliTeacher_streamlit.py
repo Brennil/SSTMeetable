@@ -126,33 +126,33 @@ for teach in meeting:
 st.write()
 '''
 ### Results
-#### Odd Week
 '''
 
-st.write()
-time_converter(all_avail)
+if meeting == []:
+    st.write("Select some teachers to see the common available timeslots!")
+else:
+    st.write("**Odd Week**")
+    st.write("\n")
+    time_converter(all_avail)
 
-open_db('2023T1EVEN.csv')
+    open_db('2023T1EVEN.csv')
 
-all_avail = dict()
-for teach in meeting:
-    x = availableper(teach)
-    for key in x.keys():
-        if key not in all_avail.keys():
-            all_avail[key] = x[key]
-        else:
-            vals = all_avail[key].copy()
-            for val in vals:
-                if val not in x[key]:
-                    all_avail[key].remove(val)
+    all_avail = dict()
+    for teach in meeting:
+        x = availableper(teach)
+        for key in x.keys():
+            if key not in all_avail.keys():
+                all_avail[key] = x[key]
+            else:
+                vals = all_avail[key].copy()
+                for val in vals:
+                    if val not in x[key]:
+                        all_avail[key].remove(val)
 
-'''
-#### Even Week
-'''
-
-st.write()
-time_converter(all_avail)
-st.write()
+    st.write("**Even Week**")
+    st.write("\n")
+    time_converter(all_avail)
+    st.write("\n")
 
 '''
 ### Thank you for using AvailabiliTeacher, Ver 2.0! :smile:
