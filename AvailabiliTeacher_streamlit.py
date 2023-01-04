@@ -102,11 +102,9 @@ def time_converter(all_avail):
                 headers.append(key)
                 for time in current:
                     col.append("{} - {}".format(time[0],time[1]))
-                st.write(col)
                 cols.append(col)
                 break
     longest = max([len(x) for x in cols])
-    st.write(longest)
     for col in cols:
         while len(col) < longest:
             col.append("")
