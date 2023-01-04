@@ -121,7 +121,7 @@ def time_converter(all_avail):
     ]
                                
     td_props = [
-    ('font-size', '12px')
+    ('font-size', '14px')
     ]
                                  
     styles = [
