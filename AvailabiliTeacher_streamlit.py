@@ -12,7 +12,7 @@ st.markdown("This app is currently available for: :red[**Term 1 2023**]")
 
 '''
 
-A simple app to identify the common available periods across two or more teachers, based on their timetable. This may be useful to identify viable timings for meetings that are not reflected in the timetable, such as committee meetings.
+This is a simple app to identify the common available periods across two or more teachers, based on their timetable. This may be useful to identify viable timings for meetings that are not reflected in the timetable, such as committee meetings.
 '''
 st.markdown(":blue[**Disclaimer:**]") 
 st.markdown("* :blue[The identified common available periods do not take into account ad hoc meetings or other commitments that teachers may have. After identifying the possible meeting times, pleasedouble-check with the teachers involved to confirm their availability.]")
