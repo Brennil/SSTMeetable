@@ -15,7 +15,7 @@ st.markdown("This app is currently available for: :red[**Term 1 2023**]")
 This is a simple app to identify the common available periods across two or more teachers, based on their timetable. This may be useful to identify viable timings for meetings that are not reflected in the timetable, such as committee meetings.
 '''
 st.markdown(":blue[**Disclaimer:**]") 
-st.markdown("* :blue[The identified common available periods are simply a first cut from the timetable. This app does not take into account ad hoc meetings or other commitments that teachers may have. After identifying the possible meeting times, please double-check with the teachers involved to confirm their availability.]")
+st.markdown("* :blue[The identified common available periods are simply a first cut using the timetable. This app does not take into account ad hoc meetings or other commitments that teachers may have. After identifying the possible meeting times, please double-check with the teachers involved to confirm their availability.]")
 st.markdown("* :blue[Public and school holidays are not taken into consideration when identifying common available periods. Please cross-check with a calendar to ensure your proposed meeting does not fall on a holiday.]")
 
 '''
