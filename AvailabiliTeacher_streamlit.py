@@ -7,7 +7,7 @@ from collections import defaultdict
 
 '''
 # SST AvailabiliTeacher
-(Ver 3.0 BETA, dated 13 Jan 2023)
+(Ver 3.0, dated 13 Jan 2023)
 '''
 
 st.markdown("This app is currently available for: :red[**Term 1 2023**]")
