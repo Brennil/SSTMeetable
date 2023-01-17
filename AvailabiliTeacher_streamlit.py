@@ -1,13 +1,11 @@
 import streamlit as st
 import pandas as pd
-import gspread
-from google.oauth2 import service_account
 import csv
 from collections import defaultdict
 
 '''
 # SST AvailabiliTeacher
-(Ver 3.0, dated 13 Jan 2023)
+(Ver 2.1, dated 4 Jan 2023)
 '''
 
 st.markdown("This app is currently available for: :red[**Term 1 2023**]")
@@ -26,20 +24,12 @@ Made with :heart: by Jovita Tang
 ---
 
 '''
-
-scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive', 'https://www.googleapis.com/auth/spreadsheets']
-
-credentials = service_account.Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes = scope)
-
-gc = gspread.authorize(credentials)
-
+    
 db = dict()
 
 def open_db(filename):
-    spread = gc.open(filename)
-    worksheet = spread.worksheet("Sheet1")
-    csvdb = worksheet.get_all_values()
-    
+    file = open(filename)
+    csvdb = csv.reader(file)
     db['Monday'] = defaultdict()
     db['Tuesday'] = defaultdict()
     db['Wednesday'] = defaultdict()
@@ -117,7 +107,6 @@ def time_converter(all_avail):
                     col.append("{} - {}".format(time[0],time[1]))
                 cols.append(col)
                 break
-
     longest = max([len(x) for x in cols])
     for col in cols:
         while len(col) < longest:
@@ -159,15 +148,14 @@ def time_converter(all_avail):
     
     # Display a static table
     st.table(df2)
+    
 
-teachers = gc.open('TeacherList')
-worksheet = teachers.worksheet("Sheet1")
-teachers_list = [x[0] for x in worksheet.get_all_values()]
+with open('TeacherList.txt','r') as f:
+    teachers_list = [line.rstrip() for line in f]
 
 meeting = []
 
-open_db('2023T1ODD')
-#open_db('15RgpeB32eFEfI__3OogezeGxdh2-gZZM70N6HOs6670')
+open_db('2023T1ODD.csv')
 
 '''
 ### Enter Teachers' Names
@@ -193,6 +181,7 @@ for teach in meeting:
                 if val not in x[key]:
                     all_avail[key].remove(val)    
 
+st.write("\n")
 '''
 ### Results
 '''
@@ -203,7 +192,7 @@ else:
     st.write("***Odd Week***")
     time_converter(all_avail)
 
-    open_db('2023T1EVEN')
+    open_db('2023T1EVEN.csv')
 
     all_avail = dict()
     for teach in meeting:
