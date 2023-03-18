@@ -202,7 +202,7 @@ else:
     st.write("***Odd Week***")
     time_converter(all_avail)
 
-    open_db(TeacherAvailDatabase_EVEN)
+    open_db('TeacherAvailDatabase_EVEN')
 
     all_avail = dict()
     for teach in meeting:
