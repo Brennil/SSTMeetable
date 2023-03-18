@@ -7,10 +7,10 @@ from collections import defaultdict
 
 '''
 # SST AvailabiliTeacher
-(Ver 3.0, dated 13 Jan 2023)
+(Ver 3.1, dated 18 Mar 2023)
 '''
 
-st.markdown("This app is currently available for: :red[**Term 1 2023**]")
+st.markdown("This app is currently available for: :red[**Term 2 2023**]")
 
 '''
 
@@ -37,7 +37,7 @@ db = dict()
 
 def open_db(filename):
     spread = gc.open(filename)
-    worksheet = spread.worksheet("Sheet1")
+    worksheet = spread.worksheet("2023T2") #CHANGE THIS WHEN CHANGING TERM DATABASES!!!
     csvdb = worksheet.get_all_values()
     
     db['Monday'] = defaultdict()
@@ -166,8 +166,7 @@ teachers_list = [x[0] for x in worksheet.get_all_values()]
 
 meeting = []
 
-open_db('2023T1ODD')
-#open_db('15RgpeB32eFEfI__3OogezeGxdh2-gZZM70N6HOs6670')
+open_db('TeacherAvailDatabase_ODD')
 
 '''
 ### Enter Teachers' Names
@@ -203,7 +202,7 @@ else:
     st.write("***Odd Week***")
     time_converter(all_avail)
 
-    open_db('2023T1EVEN')
+    open_db(TeacherAvailDatabase_EVEN)
 
     all_avail = dict()
     for teach in meeting:
