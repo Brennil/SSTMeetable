@@ -12,7 +12,7 @@ import time
 (Ver 3.2, dated 23 Jun 2023)
 '''
 
-st.markdown("This app is currently available for: :red[**Term 3-4 2023**]")
+st.markdown("This app is currently available for: :red[**Term 3-4 2023**] (Ver2)")
 
 '''
 
