@@ -4,13 +4,15 @@ import gspread
 from google.oauth2 import service_account
 import csv
 from collections import defaultdict
+import random
+import time
 
 '''
 # SST AvailabiliTeacher
-(Ver 3.1, dated 18 Mar 2023)
+(Ver 3.2, dated 23 Jun 2023)
 '''
 
-st.markdown("This app is currently available for: :red[**Term 2 2023**]")
+st.markdown("This app is currently available for: :red[**Term 3-4 2023**]")
 
 '''
 
@@ -32,12 +34,12 @@ scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/au
 credentials = service_account.Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes = scope)
 
 gc = gspread.authorize(credentials)
-
+    
 db = dict()
 
 def open_db(filename):
     spread = gc.open(filename)
-    worksheet = spread.worksheet("2023T2") #CHANGE THIS WHEN CHANGING TERM DATABASES!!!
+    worksheet = spread.worksheet("2023T3-4") #CHANGE THIS WHEN CHANGING TERM DATABASES!!!
     csvdb = worksheet.get_all_values()
     
     db['Monday'] = defaultdict()
@@ -166,8 +168,6 @@ teachers_list = [x[0] for x in worksheet.get_all_values()]
 
 meeting = []
 
-open_db('TeacherAvailDatabase_ODD')
-
 '''
 ### Enter Teachers' Names
 
@@ -178,33 +178,24 @@ Don't forget to select yourself too!
 '''
 
 all_avail = dict()
-meeting = st.multiselect("", teachers_list)
+meeting = st.multiselect("", teachers_list,key='multiselect')
 st.write("Number of teachers selected:", len(meeting))
 
-for teach in meeting:
-    x = availableper(teach)
-    for key in x.keys():
-        if key not in all_avail.keys():
-            all_avail[key] = x[key]
-        else:
-            vals = all_avail[key].copy()
-            for val in vals:
-                if val not in x[key]:
-                    all_avail[key].remove(val)    
-
-'''
-### Results
-'''
-
-if meeting == []:
-    st.write("Select some teachers to see the common available timeslots!")
-else:
-    st.write("***Odd Week***")
-    time_converter(all_avail)
-
-    open_db('TeacherAvailDatabase_EVEN')
-
-    all_avail = dict()
+if st.button("Click me to generate common free periods!"):
+    exp = 0
+    while True:
+        try:
+            open_db('TeacherAvailDatabase_ODD')
+            break
+        except:
+            if 2**exp > 120: 
+                st.write("Sorry, we are having issues connecting to our database. Please try again later.")
+                st.stop()
+            else:
+                st.write("Error connecting to database... We will try again in {} seconds...".format(2**exp))
+                waittime = 2**exp + random.random()/100
+                time.sleep(waittime)
+                exp += 1
     for teach in meeting:
         x = availableper(teach)
         for key in x.keys():
@@ -214,13 +205,49 @@ else:
                 vals = all_avail[key].copy()
                 for val in vals:
                     if val not in x[key]:
-                        all_avail[key].remove(val)
+                        all_avail[key].remove(val)    
 
-    st.write("\n\n")
-    st.write("***Even Week***")
-    time_converter(all_avail)
-    st.write("\n\n")
+    '''
+    ### Results
+    '''
 
+    if meeting == []:
+        st.write("Select some teachers to see the common available timeslots!")
+    else:
+        st.write("***Odd Week***")
+        time_converter(all_avail)
+        exp = 0
+        while True:
+            try:
+                open_db('TeacherAvailDatabase_EVEN')
+                break
+            except:
+                if 2**exp > 120: 
+                    st.write("Sorry, we are having issues connecting to our database. Please try again later.")
+                    st.stop()
+                else:
+                    st.write("Error connecting to database... We will try again in {} seconds...".format(2**exp))
+                    waittime = 2**exp + random.random()/100
+                    time.sleep(waittime)
+                    exp += 1
+
+        all_avail = dict()
+        for teach in meeting:
+            x = availableper(teach)
+            for key in x.keys():
+                if key not in all_avail.keys():
+                    all_avail[key] = x[key]
+                else:
+                    vals = all_avail[key].copy()
+                    for val in vals:
+                        if val not in x[key]:
+                            all_avail[key].remove(val)
+
+        st.write("\n\n")
+        st.write("***Even Week***")
+        time_converter(all_avail)
+        st.write("\n\n")
+    
 '''
 ***Thank you for using AvailabiliTeacher!*** :smile:
 '''
