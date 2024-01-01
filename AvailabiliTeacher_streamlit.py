@@ -8,11 +8,12 @@ import random
 import time
 
 '''
-# SST AvailabiliTeacher
-(Ver 3.2, dated 23 Jun 2023)
+# SST MeetSched
+Previously AvailabiliTeacher
+(Ver 3.3, dated 01 Jan 2024)
 '''
 
-st.markdown("This app is currently available for: :red[**Term 3-4 2023**] (Ver2)")
+st.markdown("This app is currently available for: :red[**Term 1 2024**] (Ver4/ 4a)")
 
 '''
 
@@ -39,7 +40,7 @@ db = dict()
 
 def open_db(filename):
     spread = gc.open(filename)
-    worksheet = spread.worksheet("2023T3-4") #CHANGE THIS WHEN CHANGING TERM DATABASES!!!
+    worksheet = spread.worksheet("2024T1") #CHANGE THIS WHEN CHANGING TERM DATABASES!!!
     csvdb = worksheet.get_all_values()
     
     db['Monday'] = defaultdict()
