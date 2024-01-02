@@ -8,7 +8,7 @@ import random
 import time
 
 '''
-# SST MeetSched
+# SST MeetAble
 Previously AvailabiliTeacher
 (Ver 3.3, dated 01 Jan 2024)
 '''
