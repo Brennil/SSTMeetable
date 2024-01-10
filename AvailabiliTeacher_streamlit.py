@@ -250,5 +250,5 @@ if st.button("Click me to generate common free periods!"):
         st.write("\n\n")
     
 '''
-***Thank you for using AvailabiliTeacher!*** :smile:
+***Thank you for using MeetAble!*** :smile:
 '''
