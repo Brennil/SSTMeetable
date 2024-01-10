@@ -10,7 +10,7 @@ import time
 '''
 # SST MeetAble
 Previously AvailabiliTeacher
-(Ver 3.3, dated 01 Jan 2024)
+(Ver 3.3, dated 10 Jan 2024)
 '''
 
 st.markdown("This app is currently available for: :red[**Term 1 2024**] (Ver4/ 4.1/ 4.2)")
