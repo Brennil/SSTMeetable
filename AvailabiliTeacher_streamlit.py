@@ -179,7 +179,7 @@ Don't forget to select yourself too!
 '''
 
 all_avail = dict()
-meeting = st.multiselect("", teachers_list,key='multiselect')
+meeting = st.multiselect("Select teachers here!", teachers_list,key='multiselect')
 st.write("Number of teachers selected:", len(meeting))
 
 if st.button("Click me to generate common free periods!"):
