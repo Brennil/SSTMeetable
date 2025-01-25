@@ -7,7 +7,7 @@ from collections import defaultdict
 import random
 import time
 
-st.title("[Beta] Lesson Swap Helper")
+st.title("Lesson Swap Helper")
 
 st.markdown("This app is currently available for: :red[**Term 1 2025**] (Ver1.7c, 10 Jan 25)")
 
