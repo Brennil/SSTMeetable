@@ -191,6 +191,7 @@ other_teachers = []
 if st.button("Click to see who is free!"):
     if lesson_period_end <= lesson_period_start: 
         st.write("Error! Please ensure that your lesson end time is after your lesson start time!")
+        st.stop()
     lesson_period = lesson_period_start + lesson_period_end
     while lesson_period[0] + 1 != lesson_period[1]:
         lesson_period.insert(1, lesson_period[1] - 1)
