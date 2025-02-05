@@ -16,8 +16,7 @@ st.markdown("This app is currently available for: :red[**Term 1 2025**] (Ver1.7d
 The Lesson Swap Helper (LSH) is designed to help you narrow down potential lesson swaps for those times when you are scheduled to be out of school (e.g. on course). While it is unable to propose swaps for you, it can identify teachers who are available during your lesson time and teach the same class you are trying to swap away. It can also list the other teachers who teach the class, if you are able to propose a 3-way swap with them.
 '''
 st.markdown(":blue[**Disclaimer:**]") 
-st.markdown("* :blue[The identified common available periods are simply a first cut using the timetable. This app does not take into account ad hoc meetings or other commitments that teachers may have. After identifying the possible meeting times, please double-check with the teachers involved to confirm their availability.]")
-st.markdown("* :blue[Public and school holidays are not taken into consideration when identifying common available periods. Please cross-check with a calendar to ensure your proposed meeting does not fall on a holiday.]")
+st.markdown("* :blue[The identified available teachers are simply a first cut using the timetable. This app does not take into account ad hoc meetings or other commitments that teachers may have. After identifying the possible meeting times, please double-check with the teachers involved to confirm their availability.]")
 
 '''
 Made with :heart: by Jovita Tang
