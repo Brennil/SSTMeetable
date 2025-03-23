@@ -13,7 +13,7 @@ Previously AvailabiliTeacher
 (Ver 3.3)
 '''
 
-st.markdown("This app is currently available for: :red[**Term 1 2025**] (Ver1.7d, 22 Jan 2025)")
+st.markdown("This app is currently available for: :red[**Term 2 2025**] (Ver2, 21 Mar 2025)")
 
 '''
 
