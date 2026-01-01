@@ -9,7 +9,7 @@ import time
 
 st.title("Lesson Swap Helper (LSH)")
 
-st.markdown("This app is currently available for: :red[**Term 3-4 2025**] (Ver2.4a, 26 Jun 2025)")
+st.markdown("This app is currently available for: :red[**Term 1 2026**] (Ver2.1, 2 Jan 2026)")
 
 '''
 
