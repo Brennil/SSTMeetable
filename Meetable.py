@@ -67,7 +67,7 @@ def availableper(teacher):
 
 def time_converter(all_avail):
     cols = []
-    headers = []
+    headers = ["",]
     all_avail_times = {}
     for key in all_avail.keys():
         timings = {
