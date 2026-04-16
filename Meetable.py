@@ -126,7 +126,7 @@ def time_converter(all_avail):
         while len(col) < longest:
             col.append("")
     st.write(headers)
-    df = pd.DataFrame(zip(*cols), columns = headers)
+    df = pd.DataFrame(zip(*cols), columns = headers, index_col=False)
     
     # style
     th_props = [
