@@ -13,7 +13,7 @@ Previously AvailabiliTeacher
 (Ver 3.3)
 '''
 
-st.markdown("This app is currently available for: :red[**Term 2 2026**] (Ver2.1, 25 Mar 2026)")
+st.markdown("This app is currently available for: :red[**Term 3-4 2026**] (Ver2, 25 June 2026)")
 
 '''
 
@@ -40,7 +40,7 @@ db = dict()
 
 def open_db(filename):
     spread = gc.open(filename)
-    worksheet = spread.worksheet("2026T2") #CHANGE THIS WHEN CHANGING TERM DATABASES!!!
+    worksheet = spread.worksheet("2026T3-4") #CHANGE THIS WHEN CHANGING TERM DATABASES!!!
     csvdb = worksheet.get_all_values()
     
     db['Monday'] = defaultdict()
