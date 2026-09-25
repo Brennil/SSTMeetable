@@ -829,6 +829,7 @@ def table_display(lst):
 teachers = gc.open('TeacherList')
 worksheet = teachers.worksheet("Sheet1")
 teachers_list = [x[:2] for x in worksheet.get_all_values()]
+teachers_only = [x[0] for x in worksheet.get_all_values()]
 class_list = ['S1-01','S1-02','S1-03','S1-04','S1-05','S1-06','S1-07','S1-08','S1-09','S1-10',
               'S2-01','S2-02','S2-03','S2-04','S2-05','S2-06','S2-07','S2-08','S2-09','S2-10',
               'S3-01','S3-02','S3-03','S3-04','S3-05','S3-06','S3-07','S3-08','S3-09','S3-10',
