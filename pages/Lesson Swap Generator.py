@@ -1026,7 +1026,12 @@ if st.button("Click to see who is free!"):
     ### Proposed Swaps
     '''
     timetable = load_timetable(teachertt)
-  
+    st.write("DEBUG")
+    st.write("teacher =", repr(teacher))
+    st.write("day =", repr(day))
+    st.write("lesson_start =", repr(lesson_start))
+    st.write("lesson_end =", repr(lesson_end))
+    
     show_lesson_swap_options(
         timetable=timetable,
         teacher=teacher,
