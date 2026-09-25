@@ -535,15 +535,6 @@ def get_teacher_classes(df):
     return classes
 
 
-def get_teacher_subjects(df):
-    """Return all subjects taught by a teacher."""
-
-    return {
-        normalise(value)
-        for value in df["Subject"].dropna()
-    }
-
-
 # ============================================================
 # FIND FREE TEACHERS
 # ============================================================
@@ -557,13 +548,8 @@ def find_free_teachers(
     end
 ):
     """
-    Find teachers who are free during the original lesson.
+    Find teachers who teach the same class who are free during the original lesson.
 
-    Categorise into:
-
-        1. Teach same class
-        2. Teach same subject
-        3. Others
 
     Same class takes priority over same subject.
     """
@@ -572,12 +558,7 @@ def find_free_teachers(
         original_lesson["Class(es)"]
     )
 
-    original_subject = normalise(
-        original_lesson["Subject"]
-    )
-
     same_class = []
-    same_subject = []
     others = []
 
     for teacher_name, df in timetable.items():
@@ -597,7 +578,6 @@ def find_free_teachers(
             continue
 
         teacher_classes = get_teacher_classes(df)
-        teacher_subjects = get_teacher_subjects(df)
 
         if original_classes & teacher_classes:
 
@@ -605,23 +585,7 @@ def find_free_teachers(
                 teacher_name
             )
 
-        elif original_subject in teacher_subjects:
-
-            same_subject.append(
-                teacher_name
-            )
-
-        else:
-
-            others.append(
-                teacher_name
-            )
-
-    return (
-        sorted(same_class),
-        sorted(same_subject),
-        sorted(others)
-    )
+    return sorted(same_class)
 
 
 # ============================================================
@@ -800,7 +764,7 @@ def show_lesson_swap_options(
     # Find teachers who are free
     # --------------------------------------------------------
 
-    same_class, same_subject, others = (
+    same_class = (
         find_free_teachers(
             timetable,
             teacher,
