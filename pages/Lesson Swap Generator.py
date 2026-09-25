@@ -992,6 +992,7 @@ if st.button("Click to see who is free!"):
     for t in teachers_list:
         if t[0] == teacher_toswap:
             dept = t[1]
+    st.write("Pang Hee Tee Robin" in teacherdb.keys())
     st.write(availableper("Pang Hee Tee Robin"))
     st.write("**"+dept+"**")
     table_display(teachers_free[dept])
