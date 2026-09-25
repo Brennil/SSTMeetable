@@ -7,6 +7,9 @@ from collections import defaultdict
 import random
 import time
 
+st.sidebar.page_link("Meetable.py", label="Meetable")
+st.sidebar.page_link("pages/Lesson Swap Helper.py", label="Lesson Swap Helper")
+
 '''
 # SST MeetAble
 Previously AvailabiliTeacher
