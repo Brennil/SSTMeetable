@@ -842,7 +842,7 @@ time_list = ['8:00','8:20','8:40','9:00','9:20','9:40','10:00','10:20','10:40','
 ### Enter Lesson to Swap
 
 '''
-teacher = st.selectbox("Select your name...", teachers_list)
+teacher = st.selectbox("Select your name...", teachers_only)
 class_toswap = st.selectbox("Select a class...", class_list)
 day = st.selectbox("Select the lesson day...", ["Odd Monday", "Odd Tuesday", "Odd Wednesday", "Odd Thursday", "Odd Friday", "Even Monday", "Even Tuesday", "Even Wednesday", "Even Thursday", "Even Friday"])
 lesson_start = st.selectbox("Select the lesson start time...", time_list)
