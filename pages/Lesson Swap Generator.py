@@ -959,12 +959,15 @@ if st.button("Click to see who is free!"):
                 waittime = 2**exp + random.random()/100
                 time.sleep(waittime)
                 exp += 1
+    for t in teachers_list:
+        if t[0] == teacher_toswap:
+            dept_toswap = t[1]
     for teach in teachers_list:
         teacher = teach[0]
         dept = teach[1]
         x = availableper(teacher)
         if teacher in teacherdb.keys() and sublist(lesson_period, x[day.split()[1]]):
-            if class_toswap in teacherdb[teacher]:
+            if class_toswap in teacherdb[teacher] and dept != dept_toswap:
                 teachers_class_free.append(teacher)
             else:
                 teachers_free[dept].append(teacher)
@@ -989,14 +992,8 @@ if st.button("Click to see who is free!"):
     '''
 
     st.subheader("Teachers from my Department who are available during the lesson:")
-    for t in teachers_list:
-        if t[0] == teacher_toswap:
-            dept = t[1]
-    st.write(lesson_period)
-    st.write(availableper("Pang Hee Tee Robin")["Monday"])
-    st.write(sublist(lesson_period,availableper("Pang Hee Tee Robin")["Monday"]))
-    st.write("**"+dept+"**")
-    table_display(teachers_free[dept])
+    st.write("**"+dept_toswap+"**")
+    table_display(teachers_free[dept_toswap])
 
     st.subheader("Teachers who are available during the lesson and teach the class:")
     st.write("If you decide you can give the lesson away...")
