@@ -7,6 +7,9 @@ from collections import defaultdict
 import random
 import time
 
+st.sidebar.page_link("Meetable.py", label="Meetable")
+st.sidebar.page_link("pages/Lesson Swap Helper.py", label="Lesson Swap Helper")
+
 st.title("Lesson Swap Helper (LSH)")
 
 st.markdown("This app is currently available for: :red[**Term 3-4 2026**] (Ver2.1, 10 July 2026)")
