@@ -968,7 +968,7 @@ if st.button("Click to see who is free!"):
                 teachers_class_free.append(teacher)
             else:
                 teachers_free[dept].append(teacher)
-        elif teacher in teacherdb.keys() and class_toswap in teacherdb[teacher]:
+        elif teacher in teacherdb.keys() and class_toswap in teacherdb[teacher] and teacher != teacher_toswap:
             other_teachers.append(teacher)
 
     st.divider()
@@ -992,8 +992,9 @@ if st.button("Click to see who is free!"):
     for t in teachers_list:
         if t[0] == teacher_toswap:
             dept = t[1]
+    st.write(lesson_period)
     st.write(teacherdb["Pang Hee Tee Robin"])
-    st.write(availableper("Pang Hee Tee Robin"))
+    st.write(availableper("Pang Hee Tee Robin")["Monday"])
     st.write("**"+dept+"**")
     table_display(teachers_free[dept])
 
