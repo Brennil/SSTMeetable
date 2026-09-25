@@ -992,6 +992,9 @@ if st.button("Click to see who is free!"):
     for t in teachers_list:
         if t[0] == teacher_toswap:
             dept = t[1]
+    for t in teachers_list:
+        if t[1] == dept:
+            st.write(t[0])
     st.write("**"+dept+"**")
     table_display(teachers_free[dept])
 
