@@ -385,24 +385,93 @@ def find_lesson(
 ):
     """
     Find a lesson using:
-
         Teacher
         Day, e.g. Odd Tuesday
         Start Time
         End Time
     """
 
+    if teacher not in timetable:
+        st.error(f"Teacher not found: {teacher}")
+        return None
+
     df = timetable[teacher]
 
-    matches = df[
-        (df["Day"].apply(normalise) == normalise(day))
+    # Standardise input times
+    start = to_time(start)
+    end = to_time(end)
+
+    # First filter by day
+    day_matches = df[
+        df["Day"].apply(normalise)
+        == normalise(day)
+    ]
+
+    # DEBUG INFORMATION
+    if day_matches.empty:
+        st.error(
+            f"No lessons found for {teacher} on '{day}'."
+        )
+
+        st.write(
+            "Days found in timetable:",
+            df["Day"].dropna().unique().tolist()
+        )
+
+        return None
+
+    # Then find matching start/end times
+    matches = day_matches[
+        (day_matches["Start Time"] == start)
         &
-        (df["Start Time"] == start)
-        &
-        (df["End Time"] == end)
+        (day_matches["End Time"] == end)
     ]
 
     if matches.empty:
+
+        st.error(
+            f"No lesson found for {teacher} on {day} "
+            f"from {start.strftime('%H:%M')} "
+            f"to {end.strftime('%H:%M')}."
+        )
+
+        st.write("Lessons found on that day:")
+
+        debug_df = day_matches[
+            [
+                "Start Time",
+                "End Time",
+                "Periods",
+                "Class(es)",
+                "Subject"
+            ]
+        ].copy()
+
+        debug_df["Start Time"] = (
+            debug_df["Start Time"]
+            .apply(
+                lambda x:
+                x.strftime("%H:%M")
+                if x is not None
+                else ""
+            )
+        )
+
+        debug_df["End Time"] = (
+            debug_df["End Time"]
+            .apply(
+                lambda x:
+                x.strftime("%H:%M")
+                if x is not None
+                else ""
+            )
+        )
+
+        st.dataframe(
+            debug_df,
+            hide_index=True
+        )
+
         return None
 
     return matches.iloc[0]
