@@ -955,15 +955,23 @@ if st.button("Click to see who is free!"):
     ### Other Possibilities to Explore
     '''
 
-    st.subheader("Teachers from my Department who are available during the lesson:")
+    '''
+    #### Teachers from my Department who are available during the lesson
+    '''
+    
     st.write("If you need a colleague from the same department to look after your class...")
     st.write("**"+dept_toswap+"**")
     table_display(teachers_free[dept_toswap])
 
-    st.subheader("Teachers who are available during the lesson and teach the class:")
+    '''
+    #### Teachers who are available during the lesson and teach the class
+    '''
+    
     st.write("If you decide you can give the lesson away...")
     table_display(teachers_class_free)
   
-    st.subheader("Other teachers who teach the class:")
+    '''
+    #### Other teachers who teach the class
+    '''
     st.write("These teachers are not available during your lesson, but you may wish to consider them for a multi-way swap.")
     table_display(other_teachers)
