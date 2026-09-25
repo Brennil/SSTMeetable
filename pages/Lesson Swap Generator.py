@@ -5,7 +5,7 @@ from google.oauth2 import service_account
 import csv
 from collections import defaultdict
 import random
-import time
+import datetime
 
 st.sidebar.page_link("Meetable.py", label="Meetable")
 st.sidebar.page_link("pages/Lesson Swap Helper.py", label="Lesson Swap Helper")
@@ -236,17 +236,14 @@ def to_time(value):
     if pd.isna(value):
         return None
 
-    if isinstance(value, time):
+    if isinstance(value, datetime.time):
         return value
 
-    if isinstance(value, datetime):
+    if isinstance(value, datetime.datetime):
         return value.time()
 
-    if hasattr(value, "time"):
-        try:
-            return value.time()
-        except Exception:
-            pass
+    if isinstance(value, pd.Timestamp):
+        return value.time()
 
     value = str(value).strip()
 
