@@ -826,10 +826,6 @@ def show_lesson_swap_options(
     # DISPLAY
     # ========================================================
 
-    st.subheader(
-        "Lesson Swap Options"
-    )
-
     st.markdown(
         f"**{original_lesson['Class(es)']} — "
         f"{original_lesson['Subject']}**"
@@ -839,16 +835,11 @@ def show_lesson_swap_options(
         f"{day}, "
         f"{lesson_start.strftime('%H:%M')}–"
         f"{lesson_end.strftime('%H:%M')} "
-        f"({int(original_lesson['Periods'])} periods)"
     )
 
     # --------------------------------------------------------
     # Possible reciprocal swaps
     # --------------------------------------------------------
-
-    st.markdown(
-        "#### Possible reciprocal swaps"
-    )
 
     if swaps:
 
@@ -861,7 +852,6 @@ def show_lesson_swap_options(
                 f"{swap['Day']}, "
                 f"{swap['Start Time'].strftime('%H:%M')}–"
                 f"{swap['End Time'].strftime('%H:%M')} "
-                f"({int(swap['Periods'])} periods)"
             )
 
     else:
@@ -869,47 +859,6 @@ def show_lesson_swap_options(
         st.info(
             "No reciprocal lesson swaps were found."
         )
-
-    # --------------------------------------------------------
-    # Available teachers
-    # --------------------------------------------------------
-
-    with st.expander(
-        "Other teachers who are free"
-    ):
-
-        st.markdown(
-            "**Teach the same class**"
-        )
-
-        if same_class:
-            st.write(
-                ", ".join(same_class)
-            )
-        else:
-            st.write("None")
-
-        st.markdown(
-            "**Teach the same subject**"
-        )
-
-        if same_subject:
-            st.write(
-                ", ".join(same_subject)
-            )
-        else:
-            st.write("None")
-
-        st.markdown(
-            "**Other teachers**"
-        )
-
-        if others:
-            st.write(
-                ", ".join(others)
-            )
-        else:
-            st.write("None")
 
 def table_display(lst):
     cols = []
@@ -1026,12 +975,6 @@ if st.button("Click to see who is free!"):
     '''
     ### Proposed Swaps
     '''
-    st.write(teachers_only)
-    st.write("DEBUG")
-    st.write("teacher =", repr(teacher_toswap))
-    st.write("day =", repr(day))
-    st.write("lesson_start =", repr(lesson_start))
-    st.write("lesson_end =", repr(lesson_end))
     
     show_lesson_swap_options(
         timetable=timetable,
@@ -1046,9 +989,11 @@ if st.button("Click to see who is free!"):
     '''
 
     st.subheader("Teachers from my Department who are available during the lesson:")
-    for dept in sorted(list(teachers_free.keys())):
-        st.write("**"+dept+"**")
-        table_display(teachers_free[dept])
+    for t in teachers_list:
+        if t[0] == teacher_toswap:
+            dept = t[1]
+    st.write("**"+dept+"**")
+    table_display(teachers_free[dept])
 
     st.subheader("Teachers who are available during the lesson and teach the class:")
     st.write("If you decide you can give the lesson away...")
