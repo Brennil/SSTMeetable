@@ -992,6 +992,7 @@ if st.button("Click to see who is free!"):
     '''
 
     st.subheader("Teachers from my Department who are available during the lesson:")
+    st.write("If you need a colleague from the same department to look after your class...")
     st.write("**"+dept_toswap+"**")
     table_display(teachers_free[dept_toswap])
 
