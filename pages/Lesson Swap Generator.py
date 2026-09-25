@@ -12,6 +12,8 @@ st.sidebar.page_link("pages/Lesson Swap Helper.py", label="Lesson Swap Helper")
 
 st.title("Lesson Swap Generator (LSG)")
 
+st.markdown("Version 0.1")
+
 st.markdown("This app is currently available for: :red[**Term 3-4 2026**] (Ver2.1, 10 July 2026)")
 
 '''
