@@ -893,7 +893,7 @@ if st.button("Click to see who is free!"):
     '''
     ### Proposed Swaps
     '''
-    timetable = load_timetable(teachertt)
+    timetable = load_timetable_from_google_sheet(teachertt)
   
     show_lesson_swap_options(
         timetable=timetable,
