@@ -124,7 +124,17 @@ timings = {
 
 @st.cache_data(ttl=300)
 
+@st.cache_data(ttl=3600)
 def load_timetable(spreadsheet_name):
+    """
+    Load all teacher timetables from Google Sheets
+    using a single batch API request.
+
+    Headers are on Row 3.
+
+    Week + Day are combined:
+        Odd + Tuesday -> Odd Tuesday
+    """
 
     credentials = service_account.Credentials.from_service_account_info(
         st.secrets["gcp_service_account"],
@@ -136,8 +146,24 @@ def load_timetable(spreadsheet_name):
 
     gc = gspread.authorize(credentials)
 
-    # Open Google Sheet by filename/title
     spreadsheet = gc.open(spreadsheet_name)
+
+    # Get worksheet metadata.
+    worksheets = spreadsheet.worksheets()
+
+    # Build ranges for all worksheets.
+    #
+    # The single quotes protect worksheet names containing
+    # spaces or special characters.
+    ranges = [
+        f"'{worksheet.title}'!A3:H"
+        for worksheet in worksheets
+    ]
+
+    # ONE Google Sheets batch read request
+    result = spreadsheet.values_batch_get(
+        ranges
+    )
 
     timetable = {}
 
@@ -152,39 +178,69 @@ def load_timetable(spreadsheet_name):
         "Co-teacher(s)"
     }
 
-    for worksheet in spreadsheet.worksheets():
+    value_ranges = result.get(
+        "valueRanges",
+        []
+    )
 
-        teacher = worksheet.title
+    for worksheet, value_range in zip(
+        worksheets,
+        value_ranges
+    ):
 
-        values = worksheet.get_all_values()
+        teacher_name = worksheet.title
 
-        # Headers are on Row 3
-        if len(values) < 3:
-            continue
-
-        headers = [
-            str(header).strip()
-            for header in values[2]
-        ]
-
-        # Data starts from Row 4
-        data = values[3:]
-
-        df = pd.DataFrame(
-            data,
-            columns=headers
+        values = value_range.get(
+            "values",
+            []
         )
 
-        missing = required_columns - set(df.columns)
+        if not values:
+            continue
 
+        # First returned row is Row 3 = headers
+        headers = [
+            str(header).strip()
+            for header in values[0]
+        ]
+
+        # Remaining rows are data
+        data = values[1:]
+
+        missing = required_columns - set(headers)
+
+        # Ignore worksheets that aren't timetable tabs
         if missing:
             continue
+
+        # ----------------------------------------------------
+        # Google Sheets may omit trailing empty cells.
+        # Pad each row so it has the same number of columns
+        # as the header.
+        # ----------------------------------------------------
+
+        cleaned_data = []
+
+        for row in data:
+
+            padded_row = (
+                row
+                + [""] * (len(headers) - len(row))
+            )
+
+            cleaned_data.append(
+                padded_row[:len(headers)]
+            )
+
+        df = pd.DataFrame(
+            cleaned_data,
+            columns=headers
+        )
 
         # Remove completely empty rows
         df = df[
             ~df.apply(
-                lambda row:
-                all(
+                lambda row: all(
                     str(value).strip() == ""
                     for value in row
                 ),
@@ -192,37 +248,47 @@ def load_timetable(spreadsheet_name):
             )
         ].copy()
 
-        # ====================================================
-        # COMBINE WEEK + DAY
+        # ----------------------------------------------------
+        # Week + Day
         #
         # Odd + Tuesday -> Odd Tuesday
-        # ====================================================
+        # ----------------------------------------------------
 
         df["Day"] = (
-            df["Week"].astype(str).str.strip()
+            df["Week"]
+            .astype(str)
+            .str.strip()
             + " "
-            + df["Day"].astype(str).str.strip()
+            + df["Day"]
+            .astype(str)
+            .str.strip()
         )
 
-        # We no longer need the separate Week column
         df.drop(
             columns=["Week"],
             inplace=True
         )
 
-        # ====================================================
-        # CONVERT DATA TYPES
-        # ====================================================
+        # ----------------------------------------------------
+        # Convert data types
+        # ----------------------------------------------------
 
-        df["Start Time"] = df["Start Time"].apply(to_time)
-        df["End Time"] = df["End Time"].apply(to_time)
+        df["Start Time"] = (
+            df["Start Time"]
+            .apply(to_time)
+        )
+
+        df["End Time"] = (
+            df["End Time"]
+            .apply(to_time)
+        )
 
         df["Periods"] = pd.to_numeric(
             df["Periods"],
             errors="coerce"
         )
 
-        timetable[teacher] = df
+        timetable[teacher_name] = df
 
     return timetable
 
