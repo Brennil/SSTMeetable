@@ -993,8 +993,8 @@ if st.button("Click to see who is free!"):
         if t[0] == teacher_toswap:
             dept = t[1]
     st.write(lesson_period)
-    st.write(teacherdb["Pang Hee Tee Robin"])
     st.write(availableper("Pang Hee Tee Robin")["Monday"])
+    st.write(sublist(lesson_period,availableper("Pang Hee Tee Robin")["Monday"]))
     st.write("**"+dept+"**")
     table_display(teachers_free[dept])
 
