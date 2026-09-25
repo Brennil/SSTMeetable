@@ -10,7 +10,7 @@ import datetime
 st.sidebar.page_link("Meetable.py", label="Meetable")
 st.sidebar.page_link("pages/Lesson Swap Helper.py", label="Lesson Swap Helper")
 
-st.title("Lesson Swap Helper (LSH)")
+st.title("Lesson Swap Generator (LSG)")
 
 st.markdown("This app is currently available for: :red[**Term 3-4 2026**] (Ver2.1, 10 July 2026)")
 
@@ -992,9 +992,7 @@ if st.button("Click to see who is free!"):
     for t in teachers_list:
         if t[0] == teacher_toswap:
             dept = t[1]
-    for t in teachers_list:
-        if t[1] == dept:
-            st.write(t[0])
+    st.write(availableper("Pang Hee Tee Robin")
     st.write("**"+dept+"**")
     table_display(teachers_free[dept])
 
