@@ -975,7 +975,7 @@ time_list = ['8:00','8:20','8:40','9:00','9:20','9:40','10:00','10:20','10:40','
 ### Enter Lesson to Swap
 
 '''
-teacher = st.selectbox("Select your name...", teachers_only)
+teacher_toswap = st.selectbox("Select your name...", teachers_only)
 class_toswap = st.selectbox("Select a class...", class_list)
 day = st.selectbox("Select the lesson day...", ["Odd Monday", "Odd Tuesday", "Odd Wednesday", "Odd Thursday", "Odd Friday", "Even Monday", "Even Tuesday", "Even Wednesday", "Even Thursday", "Even Friday"])
 lesson_start = st.selectbox("Select the lesson start time...", time_list)
@@ -1028,14 +1028,14 @@ if st.button("Click to see who is free!"):
     '''
     st.write(teachers_only)
     st.write("DEBUG")
-    st.write("teacher =", repr(teacher))
+    st.write("teacher =", repr(teacher_toswap))
     st.write("day =", repr(day))
     st.write("lesson_start =", repr(lesson_start))
     st.write("lesson_end =", repr(lesson_end))
     
     show_lesson_swap_options(
         timetable=timetable,
-        teacher=teacher,
+        teacher=teacher_toswap,
         day=day,
         lesson_start=lesson_start,
         lesson_end=lesson_end
