@@ -124,7 +124,7 @@ timings = {
 
 @st.cache_data(ttl=300)
 
-def load_timetable_from_google_sheet(spreadsheet_name):
+def load_timetable(spreadsheet_name):
 
     credentials = service_account.Credentials.from_service_account_info(
         st.secrets["gcp_service_account"],
@@ -893,7 +893,7 @@ if st.button("Click to see who is free!"):
     '''
     ### Proposed Swaps
     '''
-    timetable = load_timetable_from_google_sheet(teachertt)
+    timetable = load_timetable(teachertt)
   
     show_lesson_swap_options(
         timetable=timetable,
